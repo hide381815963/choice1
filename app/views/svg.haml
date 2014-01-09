@@ -1,0 +1,28 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+<meta charset="UTF-8" /> 
+<title>JavaScriptでSVGアニメーション</title> 
+</head> 
+<body>
+<h1>JavaScriptでSVGアニメーション</h1>
+<form>
+<input type="button" id="change" value="回転">
+</form>
+<svg>
+<polygon id="myPoly" fill="#FFF000" stroke="#FF0000" points="72.278,58.394 78.338,91.04 48.74,75.993 19.565,91.844 24.729,59.045 0.639,36.196 33.428,30.972 47.715,1 62.814,30.57 95.734,34.895 " />
+</svg>
+<script type="text/javascript">
+document.getElementById("change").addEventListener("click", function(){
+var poly = document.getElementById("myPoly"); // 多角形（ポリゴン）
+var rot = 0;    // 回転角度
+setInterval(function(){
+poly.setAttribute("transform", "rotate("+rot+" 50 52)");
+rot = rot - 1;
+}, 10);
+}, true);
+</script>
+</body> 
+</html>
+
+

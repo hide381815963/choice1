@@ -1,0 +1,187 @@
+!!! html
+%html
+%head
+  %title 
+
+  %script{:src=>"../assets/jquery.min.js"}
+  %script{:src=>"../assets/kendo.all.js"}
+  %link{:href=>"../assets/kendo.common.css",:rel=>"stylesheet"}
+  %link{:href=>"../assets/kendo.default.css",:rel=>"stylesheet"}
+
+%body
+%ul
+  %li
+    %div{:id=>"example",:class=>"k-content"}
+      %div{:class=>"chart-wrapper"}
+        %div{:id=>"chart"}
+      :javascript
+        function createChart() {
+        $("#chart").kendoChart({
+        theme: $(document).data("kendoSkin") || "default",
+        title: {
+        text: "Internet Users"},
+        legend: {
+        position: "bottom"},
+        seriesDefaults: {
+        type: "bar"
+        },
+        series: [{
+          name: "United States",
+          data: [67.96, 68.93, 75, 74, 78]
+        }],
+        valueAxis: {
+        labels: {
+        format: "{0}%"
+        }
+        },
+        categoryAxis: {
+        categories: [2005, 2006, 2007, 2008, 2009]
+        },
+        tooltip: {
+        visible: true,
+        format: "{0}%"
+        }
+        });
+        }
+        $(document).ready(function() {
+        setTimeout(function() {
+        // Initialize the chart with a delay to make sure
+        // the initial animation is visible
+        createChart();
+        $("#example").bind("kendo:skinChange", function(e) {
+        createChart();
+        });
+        }, 400);
+        });
+  %li
+    %div{:id=>"sample"}
+      %label 
+        %input{:type=>"checkbox"}
+          何かする
+        %input{:type=>"text"}
+        %input{:type=>"button"}
+        
+    %div{:id=>"example2",:class=>"k-content"}
+      %div{:class=>"chart-wrapper"}
+        %div{:id=>"chart2"}
+      :javascript
+                function createChart2() {
+                    $("#chart2").kendoChart({
+                        theme: $(document).data("kendoSkin") || "default",
+                        dataSource: {
+                            transport: {
+                                read: {
+                                    url: "/data.json",
+                                    dataType: "json"
+                                }
+                            },
+                            sort: {
+                                field: "sales",
+                                dir: "asc"
+                            }
+                        },
+                        title: {
+                            text: "test"
+                        },
+                        legend: {
+                            position: "bottom"
+                        },
+                        seriesDefaults: {
+                            type: "bar",
+                            stack: true
+                        },
+                        series:
+                        [{
+                            field: "employee",
+                            name: "Employee"
+                        }],
+                        categoryAxis: {
+                            field: "sales"
+                        },
+                        valueAxis: {
+                            labels: {
+                                format: "{0:N0}"
+                            },
+                            majorUnit: 10
+                        },
+                        tooltip: {
+                            visible: true,
+                            format: "{0:N0}"
+                        }
+                    });
+                }
+                
+                $(document).ready(function() {
+                        setTimeout(function() {
+                        // Initialize the chart with a delay to make sure
+                        // the initial animation is visible
+                        createChart2();
+
+                        $("#example2").bind("kendo:skinChange", function(e) {
+                            createChart2();
+                        });
+                    }, 400);
+                    $("#sample :button").bind("change", refresh);
+                });
+                $(function() {
+                  $("#sample :checkbox").click(function() {
+                    if($("#sample :checked").length > 0) {
+                     $("#sample :text").attr('disabled', false);
+                     $("#sample :text").val('入力可');
+                     
+                   } else {
+                     $("#sample :text").attr('disabled', true);
+                     $("#sample :text").val('入力不可');
+                 $("#sample :text").click(function() {
+                        var chart = $("#chart2").data("kendoChart"),
+                        series = chart.options.series,
+                        type = "bar",
+                        stack = $("#stack").prop("checked");
+                        window.alart(series.data);
+                        series.data = 1000;
+                        chart.refresh();
+                 
+                 });
+                   }
+                  });
+                });
+                
+                $(function() {
+                 $("#sample :text").click(function() {
+                        var chart = $("#chart2").data("kendoChart"),
+                        series = chart.options.series,
+                        type = "bar",
+                        stack = $("#stack").prop("checked");
+                        window.alart(series.data);
+                        series.data = 1000;
+                        chart.refresh();
+                 
+                 });
+                 });
+                function refresh() {
+                    var chart = $("#chart2").data("kendoChart"),
+                        series = chart.options.series,
+                        stack = $("#stack").prop("checked");
+
+                    for (var i = 0, length = series.length; i < length; i++) {
+                        series[i].stack = stack;
+                        series[i].type = type;
+                        series[i].data = 100;
+                    };
+                    
+                    chart.refresh();
+                }
+
+
+
+        
+  %p{:id=>"window"}
+    Content of the Window
+  %script
+    $(document).ready(function(){
+    $("#window").kendoWindow({
+    content: "http://localhost:4567/data.json",
+    title: "Async Window Content"
+    });
+    });
+  

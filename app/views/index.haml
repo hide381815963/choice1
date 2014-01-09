@@ -1,0 +1,30 @@
+!!!
+%head
+  %body
+    %h1
+      = @title
+    
+    %tr
+      %td a
+      %td b
+    
+    %ul
+      %li w
+      %li e
+      %li r
+    
+
+      %input{:type=>"file" ,:name=>"imgData"}
+        %br
+        %input{:type=>"submit", :value=>"upload"}
+      %button{:name => "name",:onclick=>"alert('OK')"} OK
+      
+    %form{:action => '/upload', :method => 'POST', :enctype => 'multipart/form-data'}
+      %input{:type => 'file',   :name => 'file'}
+      %input{:type => 'submit', :value => 'upload'}
+      %input{:type => 'hidden', :name => '_method', :value => 'put'}
+      
+    %form{:action => '/csv', :method => 'POST', :enctype => 'multipart/form-data'}
+      %input{:type => 'file',   :name => 'file'}
+      %input{:type => 'submit', :value => 'upload'}
+      %input{:type => 'hidden', :name => '_method', :value => 'put'}

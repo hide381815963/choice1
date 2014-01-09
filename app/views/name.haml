@@ -1,0 +1,100 @@
+!!!
+%html{:lang=>"ja"}
+  %head
+    %meta{:charset=>"utf-8"}
+    %title= "お子さんの名前決めましょう"
+    %meta{:name=>"description" ,:content=>""}
+    %meta{:name=>"author" ,:content=>""}
+    
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+    %script{:src=>"http://html5shim.googlecode.com/svn/trunk/html5.js"}
+    <![endif]-->
+
+    <!-- Le styles -->
+    %link{:href=>"/assets/css/bootstrap.css" ,:rel=>"stylesheet"}
+    %link{:href=>"/assets/css/bootstrap-responsive.css" ,:rel=>"stylesheet"}
+    %link{:rel=>"shortcut icon" ,:href=>"images/favicon.ico"}
+
+
+  %body
+    %div{:class=>"navbar navbar-fixed-top"}
+      %div{:class=>"navbar-inner"}
+        %div{:class=>"container"}
+          %a{:class=>"btn btn-navbar" ,:datatoggle=>"collapse" ,:datatarget=>".nav-collapse"}
+            %span{:class=>"icon-bar"}
+            %span{:class=>"icon-bar"}
+            %span{:class=>"icon-bar"}
+          %a{:class=>"brand" ,:href=>"#"} Project name
+          %div{:class=>"nav-collapse"}
+            %ul{:class=>"nav"}
+              %li{:class=>"active"}
+                %a{:href=>"#"} Home
+              %li
+                %a{:href=>"#about"} About
+              %li
+                %a{:href=>"#contact"} Contact
+                
+    <!-- Main hero unit for a primary marketing message or call to action -->
+    %div{:class=>"hero-unit"}
+      %h1 うちのお子さんの名前
+      %p
+        決めちゃいましょう！ 
+      %p
+        %a{:class=>"btn btn-primary btn-large"} Learn more
+        
+      <!-- Example row of columns -->
+    %div{:class=>"row"}
+      %div{:class=>"span4"}
+        %h2= @name[0][1].to_s
+        %p= "　　　　　　ちゃん"
+        %p
+        Donec id elit non mi porta gravida at eget metus. Fusce 
+        %p 
+          %a{:class=>"btn" ,:href=>"#"} View details ≫
+      %div{:class=>"span4"}
+        %h2= @name[1][1]
+        %p= "　　　　　　ちゃん"
+        %p
+        Donec id elit non mi porta gravida at eget metus. Fusce 
+        %p
+          %a{:class=>"btn" ,:href=>"#"} View details ≫
+      %div{:class=>"span4"}
+        %h2= @name[2][1]
+        %p= "　　　　　　ちゃん"
+        %p 
+        Donec sed odio dui. Cras justo odio, dapibus ac facilisis 
+        %p
+          %a{:class=>"btn" ,:href=>"#"} View details ≫
+
+    %div{:class=>"container"}
+      %p= @name
+      %i
+      ちゃん
+      %p
+      なんてどうでしょう
+      %form{:class => "sub",:action=>"/"}
+        %button="ok"
+      %form
+        %input{:type=>"button",:value=>"こうしん",:onclick=>"location.reload();"}
+  %hr
+  %footer
+    %p &copy; はるひで 2012
+  <!-- Le javascript
+  ================================================== -->
+  <!-- Placed at the end of the document so the pages load faster -->
+  %script{:src=>"../assets/js/jquery.js"}
+  %script{:src=>"../assets/js/bootstrap-transition.js"}
+
+  %script{:src=>"../assets/js/bootstrap-alert.js"}
+  %script{:src=>"../assets/js/bootstrap-modal.js"}
+  %script{:src=>"../assets/js/bootstrap-dropdown.js"}
+  %script{:src=>"../assets/js/bootstrap-scrollspy.js"}
+  %script{:src=>"../assets/js/bootstrap-tab.js"}
+  %script{:src=>"../assets/js/bootstrap-tooltip.js"}
+
+  %script{:src=>"../assets/js/bootstrap-popover.js"}
+  %script{:src=>"../assets/js/bootstrap-button.js"}
+  %script{:src=>"../assets/js/bootstrap-collapse.js"}
+  %script{:src=>"../assets/js/bootstrap-carousel.js"}
+  %script{:src=>"../assets/js/bootstrap-typeahead.js"}

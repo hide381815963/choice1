@@ -1,0 +1,12 @@
+%html
+  %head
+    %meta charset="UTF-8" 
+    %title csvファイルリード 
+  %body
+    %h1
+      csvだ
+  %form
+- f = open(@csv,"r")
+- f.each_line do |line|
+    %p #{line}
+
